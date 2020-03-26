@@ -3,62 +3,90 @@ page_type: sample
 languages:
 - csharp
 products:
-- dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
+- aspnet-core
+- azure-cosmos-db
+description: "This sample shows you how to use the Microsoft Azure Cosmos DB service to store and access data from an ASP.NET Core MVC application."
 ---
 
-# Official Microsoft Sample
+# Web application development with ASP.NET Core MVC using Azure Cosmos DB
 
-<!-- 
-Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
+This sample shows you how to use the Microsoft Azure Cosmos DB service to store and access data from an ASP.NET Core MVC application hosted on Azure App Service or running locally in your computer.
 
-Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
+## Running this sample in Visual Studio
 
-Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
--->
+1. Before you can run this sample, you must have the following perquisites:
+    - Visual Studio 2017 (or higher).
+    - An active Azure Cosmos account or the [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) - If you don't have an account, refer to the [Create a database account](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-dotnet#create-an-azure-cosmos-db-account) article
 
-Give a short description for your sample here. What does it do and why is it important?
+2.Clone this repository using Git for Windows (http://www.git-scm.com/), or download the zip file.
 
-## Contents
+3.From Visual Studio, open the [CosmosWebSample.csproj](./src/CosmosWebSample.csproj).
 
-Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
+4.In Visual Studio Build menu, select **Build Solution** (or Press F6). 
 
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
-| `.gitignore`      | Define what to ignore at commit time.      |
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md`       | This README file.                          |
-| `LICENSE`         | The license for the sample.                |
+5.Retrieve the URI and PRIMARY KEY (or SECONDARY KEY) values from the Keys blade of your Azure Cosmos account in the Azure portal. For more information on obtaining endpoint & keys for your Azure Cosmos account refer to [View, copy, and regenerate access keys and passwords](https://docs.microsoft.com/azure/cosmos-db/secure-access-to-data#master-keys)  **if you are going to work with a real Azure Cosmos account**.
+    * The default configuration is setup to work with a local Azure Cosmos DB Emulator.
 
-## Prerequisites
+6.In the [appSettings.json](./src/appSettings.json) file, located in the project root, find **Account** and **Key** and replace the placeholder values with the values obtained for your account if you are going to work with a real Azure Cosmos account.
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+7.You can now run and debug the application locally by pressing **F5** in Visual Studio.
 
-## Setup
+### Deploy this sample to Azure in Visual Studio
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
+1. In Visual Studio Solution Explorer, right-click on the project name and select **Publish...**
 
-## Running the sample
+2. Using the *Pick a publish target* dialog, select **App Service**
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+3. Either select an existing App Service, or follow the prompts to create new one. Note: If you choose to create a new one, the App Name chosen must be globally unique. 
 
-## Key concepts
+4. Once you have selected the App Service, click **Publish**
 
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
+5. After a short time, Visual Studio will complete the deployment and open a browser with your deployed application. 
 
-## Contributing
+For additional ways to deploy this web application to Azure, please refer to the [Deploy ASP.NET Core apps to Azure App Service](https://docs.microsoft.com/aspnet/core/host-and-deploy/azure-apps/?view=aspnetcore-2.2) article which includes information on using Azure Pipelines, CLI, and many more. 
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+## Running this sample from the .NET Core command line
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+1. Before you can run this sample, you must have the following perquisites:
+    - [.NET Core SDK 2.1 or higher](https://dotnet.microsoft.com/download)
+    - An active Azure Cosmos account or the [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) - If you don't have an account, refer to the [Create a database account](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-dotnet#create-an-azure-cosmos-db-account) article
+
+2.Clone this repository using your Git command line, or download the zip file.
+
+3.Go to the location of the [CosmosWebSample.csproj](./src/CosmosWebSample.csproj) in your command line prompt.
+
+4.Run `dotnet build` to restore packages and build the project.
+
+5.Retrieve the URI and PRIMARY KEY (or SECONDARY KEY) values from the Keys blade of your Azure Cosmos account in the Azure portal. For more information on obtaining endpoint & keys for your Azure Cosmos account refer to [View, copy, and regenerate access keys and passwords](https://docs.microsoft.com/azure/cosmos-db/secure-access-to-data#master-keys) **if you are going to work with a real Azure Cosmos account**.
+    * The default configuration is setup to work with a local Azure Cosmos DB Emulator.
+
+6.In the [appSettings.json](./src/appSettings.json) file, located in the project root, find **Account** and **Key** and replace the placeholder values with the values obtained for your account if you are going to work with a real Azure Cosmos account.
+
+7.You can now run and debug the application locally by running `dotnet run` and browsing the Url provided by the .NET Core command line.
+
+### Deploy this sample to Azure with Visual Studio Code
+
+1. Install the [Visual Studio Code extension](https://code.visualstudio.com/tutorials/app-service-extension/getting-started#_install-the-extension).
+
+2. Sign in to your Azure account.
+
+3. Click on the [Deploy](https://code.visualstudio.com/tutorials/app-service-extension/deploy-app) button on the Azure App Service extension.
+
+4. Select the `src` folder to deploy. 
+
+5. Select your Azure subscription and whether you want to select an existing Web App or create a new one. Note: If you choose to create a new one, the App Name chosen must be globally unique. 
+
+5. After a short time, Visual Studio Code will complete the deployment and a visual prompt to *Browse Website* should appear.
+
+For additional ways to deploy this web application to Azure, please refer to the [Deploy to Azure using App Service](https://code.visualstudio.com/tutorials/app-service-extension/getting-started) article, additionally you can refer to [](https://code.visualstudio.com/tutorials/nodejs-deployment/getting-started)
+
+
+## About the code
+The code included in this sample is intended to get you going with a simple ASP.NET Core MVC application that connects to Azure Cosmos DB. It is not intended to be a set of best practices on how to build scalable enterprise grade web applications. This is beyond the scope of this quick start sample. 
+
+## More information
+
+- [Azure Cosmos DB Documentation](https://docs.microsoft.com/azure/cosmos-db)
+- [Azure Cosmos DB .NET SDK](https://docs.microsoft.com/azure/cosmos-db/sql-api-sdk-dotnet)
+- [Azure Cosmos DB .NET SDK Reference Documentation](https://docs.microsoft.com/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet)
